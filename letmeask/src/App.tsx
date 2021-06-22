@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 import { BrowserRouter ,Route } from "react-router-dom";
 
 
@@ -7,11 +7,11 @@ import { Home } from "./pages/Home";
 import { NewRoom } from "./pages/NewRoom";
 
 // toda state ela tem o tipo futuro e o atual
-// signIn ta definido como uma função que retorna void
+// signIn ta definido como uma função que retornara uma Promise por ser async, e essa Promise é uma void
 
 type AuthContextType = {
   user: User | undefined;
-  signInWithGoogle: () => void;
+  signInWithGoogle: () => Promise<void>;
 }
 
 type User = {
@@ -25,13 +25,35 @@ export const AuthContext = createContext({} as AuthContextType) // contextos pre
 function App() {
   const [user, setUser] = useState<User>()
 
-  function signInWithGoogle() {
+  useEffect(() => {
+    // se ele conseguir verificar que o user já estava logado anteriormente, retorna um valor pra user
+    // se o user já estiver logado, ele busca as informações e seta em user
+    auth.onAuthStateChanged(user => {
+      if(user) {
+        const { displayName, photoURL, uid } = user;
+
+          // se não houver displayName ou foto, retorna erro
+          if(!displayName || !photoURL ) {
+            throw new Error("Missing information from Google Account.")
+          }
+
+          // se houver, seta em user uma id, name e avatar com as info
+          setUser({
+            id: uid,
+            name: displayName,
+            avatar: photoURL
+          })
+      }
+    })
+  }, [])
+
+  async function signInWithGoogle() {
     // pegando o provedor
     const provider = new firebase.auth.GoogleAuthProvider();
 
     // fazendo o login em popup com o provedor utilizado
-    // result vai me retornar os dados o usuário do provedor
-    auth.signInWithPopup(provider).then(result => {
+    
+    const result = await auth.signInWithPopup(provider);
 
       // se for retornado uma resposta com user
         if (result.user) {
@@ -50,7 +72,7 @@ function App() {
             avatar: photoURL
           })
         }
-    })
+    
 
   }
 

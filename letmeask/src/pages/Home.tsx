@@ -1,6 +1,6 @@
 import { useHistory } from "react-router-dom";
-
-import { auth, firebase } from "../services/firebase";
+import { useContext } from "react";
+import { AuthContext } from "../App";
 
 import illustrationImg from "../assets/images/illustration.svg";
 import logoImg from "../assets/images/logo.svg";
@@ -10,22 +10,18 @@ import { Button } from "../components/Button";
 
 import "../styles/auth.scss";
 
-
 // toda função que começa como use é um hook, e todo hook precisa estar dentro de um componente
 export function Home() {
 
     const history = useHistory();
+    const { user, signInWithGoogle } = useContext(AuthContext);
 
-    function handleCreateRoom() {
-        // pegando o provedor
-        const provider = new firebase.auth.GoogleAuthProvider();
+    async function handleCreateRoom() {
+        // se user não estiver autenticado, logar com google
+        if(!user) {
+            await signInWithGoogle();
+        }
 
-        // fazendo o login em popup com o provedor utilizado
-        // result vai me retornar os dados o usuário do provedor
-        auth.signInWithPopup(provider).then(result => {
-            console.log(result)
-        })
- 
         history.push("/rooms/new")
     }
 
