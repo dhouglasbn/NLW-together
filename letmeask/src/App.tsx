@@ -25,10 +25,13 @@ export const AuthContext = createContext({} as AuthContextType) // contextos pre
 function App() {
   const [user, setUser] = useState<User>()
 
+  // toda vez que se cria um event listener é recomendado que se atribua uma váriavel
+  // para no final retornar uma função que desativa todas as event listeners
+
   useEffect(() => {
     // se ele conseguir verificar que o user já estava logado anteriormente, retorna um valor pra user
     // se o user já estiver logado, ele busca as informações e seta em user
-    auth.onAuthStateChanged(user => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
       if(user) {
         const { displayName, photoURL, uid } = user;
 
@@ -45,6 +48,11 @@ function App() {
           })
       }
     })
+
+    // desativando todas as event listeners
+    return () => {
+      unsubscribe()
+    }
   }, [])
 
   async function signInWithGoogle() {
