@@ -12,6 +12,7 @@
 ## ---> são a forma mais simples de compartilhar informações entre componentes de um projeto
 
 # Regras de negócio:
+```
 {
   "rules": {
     "rooms": {
@@ -32,6 +33,7 @@
     }
   }
 }
+```
 
 * não é possivel listar todas as salas dentro do app
 * para criar uma nova sala o user precisa estar autenticado
