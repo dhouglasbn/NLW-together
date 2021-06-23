@@ -19,6 +19,17 @@ type FirebaseQuestions = Record<string, {
     isHighlighted: boolean;
 }>
 
+type Question = {
+    id: string;
+    author: {
+        name: string;
+        avatar: string;
+    }
+    content: string;
+    isAnswered: boolean;
+    isHighlighted: boolean;
+}
+
 type RoomParams = {
     id: string;
 }
@@ -27,7 +38,7 @@ export function Room() {
     const { user } = useAuth();
     const params = useParams<RoomParams>();
     const [newQuestion, setNewQuestion] = useState("");
-    const [questions, setQuestions] = useState()
+    const [questions, setQuestions] = useState<Question[]>([])
 
     const roomId = params.id;
 
