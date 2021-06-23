@@ -39,13 +39,13 @@
 * para criar uma nova sala o user precisa estar autenticado
 * !data.exists() para edição só após a criação
 * $ é para a variável roomId, na interação de uma sala unica
-   * qualquer user pode pegar os dados da sala
+   * qualquer user pode ler os dados da sala
    * para alterar os dados da sala o user tem que estar autenticado
    * a child authorId tem que ter valor igual a auth.id (é o criador da sala quem altera)
 * todos os users podem ler as perguntas da sala
-* para alterar uma pergunta
+* para editar uma pergunta
    * o user tem que estar autenticado
    * os dados devem existir
    * e a parent authorId tem que ser igual a auth.id(o user só cria, admin edita)
 * likes podem ser lidos por todo mundo
-* alteração feita apenas pelo dono do like( da like | tira like )
+* alteração feita apenas pelo dono do like( da like ou tira like )
