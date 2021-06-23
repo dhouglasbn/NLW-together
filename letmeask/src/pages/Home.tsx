@@ -8,9 +8,11 @@ import { Button } from "../components/Button";
 
 import "../styles/auth.scss";
 import { useAuth } from "../hooks/useAuth";
+import { FormEvent, useState } from "react";
 
 // toda função que começa como use é um hook, e todo hook precisa estar dentro de um componente
 export function Home() {
+    const[roomCode, setRoomCode] = useState("")
 
     const history = useHistory();
     const { user, signInWithGoogle } = useAuth();
@@ -22,6 +24,10 @@ export function Home() {
         }
 
         history.push("/rooms/new")
+    }
+
+    async function handleJoinRoom(event: FormEvent) {
+        event.preventDefault();
     }
 
 
@@ -41,10 +47,12 @@ export function Home() {
                         Crie sua sala com o Google
                     </button>
                     <div className="separator">ou entre em uma sala</div>
-                    <form >
+                    <form onSubmit={handleJoinRoom} >
                         <input 
                         type="text"
-                        placeholder="Digite o código da sala" />
+                        placeholder="Digite o código da sala"
+                        onChange={event => setRoomCode(event.target.value)}
+                        value={roomCode} />
                         <Button type="submit">
                             Entrar na sala
                         </Button>
