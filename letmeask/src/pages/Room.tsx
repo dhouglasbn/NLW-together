@@ -49,7 +49,7 @@ export function Room() {
 
         // fazendo um once(listener de uma vez só), usando o listener value, room vai ser a snapshot do banco retornada aqui
         // para pegar o valor dessa snapshot, só usar parameter.val()
-        roomRef.once("value", room => {
+        roomRef.on("value", room => {
             // pegando o valor da dataSnapShot
             const databaseRoom = room.val();
             // aatribuindo a fbq as questions de dbr  ou passasndo um objeto vazio caso não haja questões
