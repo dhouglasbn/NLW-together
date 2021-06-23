@@ -9,6 +9,7 @@ import { Button } from "../components/Button";
 import "../styles/auth.scss";
 import { useAuth } from "../hooks/useAuth";
 import { FormEvent, useState } from "react";
+import { database } from "../services/firebase";
 
 // toda função que começa como use é um hook, e todo hook precisa estar dentro de um componente
 export function Home() {
@@ -28,6 +29,23 @@ export function Home() {
 
     async function handleJoinRoom(event: FormEvent) {
         event.preventDefault();
+
+        // faz nada se o campo estiver vazio
+        if (roomCode.trim() === "") {
+            return;
+        }
+
+        // pegando tudo de dentro de rooms, na parte do codigo do campo
+        const roomRef = await database.ref(`rooms/${roomCode}`).get();
+
+        // se a sala não existe, o user é alertado
+        if(!roomRef.exists()) {
+            alert("Room does not exists!");
+            return;
+        }
+
+        // se existir, ele é redirecionado para sala
+        history.push(`/rooms/${roomCode}`)
     }
 
 
