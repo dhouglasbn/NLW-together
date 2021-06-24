@@ -44,6 +44,11 @@ export function Home() {
             return;
         }
 
+        if(roomRef.val().endedAt) {
+            alert("Room already closed.");
+            return;
+        }
+
         // se existir, ele é redirecionado para sala
         history.push(`/rooms/${roomCode}`)
     }
