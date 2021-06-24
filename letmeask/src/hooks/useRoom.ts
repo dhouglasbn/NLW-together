@@ -62,6 +62,11 @@ export function useRoom(roomId: string) {
 
             setTitle(databaseRoom.title)
             setQuestions(parsedQuestions);
+
+            // desligando os listeners de value
+            return () => {
+                roomRef.off("value")
+            }
         })
     }, [roomId, user?.id])
 
