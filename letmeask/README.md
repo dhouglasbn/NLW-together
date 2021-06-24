@@ -5,7 +5,7 @@
 - [x] #together
 - [x] #unidade
 - [x] #embuscadeevolução
-- [ ] código da aula 4
+- [x] #legacy
 - [ ] código da aula 5
 
 # Contextos
