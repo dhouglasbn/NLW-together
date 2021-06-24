@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { database } from "../services/firebase";
+import { useAuth } from "./useAuth";
 
 type FirebaseQuestions = Record<string, {
     author: {
@@ -9,6 +10,9 @@ type FirebaseQuestions = Record<string, {
     content: string;
     isAnswered: boolean;
     isHighlighted: boolean;
+    likes: Record<string, {
+        authorId: string;
+    }>
 }>
 
 
@@ -25,6 +29,7 @@ type QuestionType = {
 
 
 export function useRoom(roomId: string) {
+    const { user } = useAuth();
     const [questions, setQuestions] = useState<QuestionType[]>([]);
     const [title, setTitle] = useState("");
 
@@ -42,20 +47,23 @@ export function useRoom(roomId: string) {
 
             // Object.entries gera um array com arrays de keys e values em sequencia
             // ([key, value]) é a desestruturação de uma array
+            // some é um find que retorna true ou false
             const parsedQuestions = Object.entries(firebaseQuestions).map(([key, value]) => {
                 return {
                     id: key,
                     content: value.content,
                     author: value.author,
                     isHighlighted: value.isHighlighted,
-                    isAnswered: value.isAnswered
+                    isAnswered: value.isAnswered,
+                    likeCount: Object.values(value.likes ?? {}).length,
+                    hasLiked: Object.values(value.likes ?? {}).some(like => like.authorId === user?.id)
                 }
             })
 
             setTitle(databaseRoom.title)
             setQuestions(parsedQuestions);
         })
-    }, [roomId])
+    }, [roomId, user?.id])
 
     return { questions, title }
 }
