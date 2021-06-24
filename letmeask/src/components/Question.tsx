@@ -1,3 +1,5 @@
+import "../styles/question.scss";
+
 type QuestionProps = {
     content: string;
     author: {
@@ -19,7 +21,7 @@ export function Question( {
                 <span>{author.name}</span>
             </div>
             <div>
-                
+
             </div>
             </footer>
         </div>
