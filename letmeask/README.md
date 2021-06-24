@@ -4,7 +4,7 @@
 
 - [x] #together
 - [x] #unidade
-- [ ] código da aula 3
+- [x] #embuscadeevolução
 - [ ] código da aula 4
 - [ ] código da aula 5
 
