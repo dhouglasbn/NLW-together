@@ -26,7 +26,7 @@ export function Question( {
         className={classNames(
             "question",
             { answered : isAnswered },
-            { highlighted: isHighlighted }
+            { highlighted: isHighlighted && !isAnswered }
         )}
         >
             <p>{content}</p>
