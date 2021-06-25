@@ -6,7 +6,7 @@
 - [x] #unidade
 - [x] #embuscadeevolução
 - [x] #legacy
-- [ ] código da aula 5
+- [x] #juntosnopróximonivel
 
 # Contextos
 ## ---> são a forma mais simples de compartilhar informações entre componentes de um projeto
