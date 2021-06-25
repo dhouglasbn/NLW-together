@@ -4,7 +4,6 @@ import logoImg from "../assets/images/logo.svg";
 import { Button } from "../components/Button";
 import { Question } from "../components/Question";
 import { RoomCode } from "../components/RoomCode";
-import { useAuth } from "../hooks/useAuth";
 import { useRoom } from "../hooks/useRoom";
 
 import "../styles/room.scss";
@@ -21,7 +20,6 @@ type RoomParams = {
 }
 
 export function AdminRoom() {
-    const { user } = useAuth();
     const params = useParams<RoomParams>();
     const roomId = params.id;
     const history = useHistory()
@@ -89,12 +87,14 @@ export function AdminRoom() {
                                 {!question.isAnswered && (
                                     <>
                                         <button 
+                                            className="answer-button"
                                             type="button"
                                             onClick={() => handleCheckQuestionAsAnswered(question.id)}
                                         >
                                             <img src={checkImg} alt="Marcar pergunta como respondida" />
                                         </button>
                                         <button 
+                                            className="highlight-button"
                                             type="button"
                                             onClick={() => handleHighlightQuestion(question.id)}
                                         >
@@ -103,6 +103,7 @@ export function AdminRoom() {
                                     </>
                                 )}  
                                 <button 
+                                className="delete-button"
                                 type="button"
                                 onClick={() => handleDeleteQuestion(question.id)}
                                 >

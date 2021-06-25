@@ -77,8 +77,20 @@
                 }
             }
 
-            &:hover {
-                filter: brightness(0.7);
+            .like-button:hover {
+                color: #835afd;
+            }
+
+            .highlight-button:hover {
+                color: #835afd;
+            }
+
+            .answer-button:hover {
+                color: #835afd;
+            }
+
+            .delete-button:hover {
+                color: #f7415d;
             }
         }
     }
