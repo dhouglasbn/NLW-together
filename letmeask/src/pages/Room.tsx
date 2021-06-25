@@ -104,7 +104,10 @@ export function Room() {
                             <Question
                             key={question.id}
                             content={question.content}
-                            author={question.author}>
+                            author={question.author}
+                            isAnswered={question.isAnswered}
+                            isHighlighted={question.isHighlighted}
+                            >
                                 <button className={`like-button ${question.likeId ? "liked" : ""}`}
                                 type="button"
                                 aria-label="Marcar como gostei"

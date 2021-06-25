@@ -81,7 +81,10 @@ export function AdminRoom() {
                             <Question
                             key={question.id}
                             content={question.content}
-                            author={question.author}>
+                            author={question.author}
+                            isAnswered={question.isAnswered}
+                            isHighlighted={question.isHighlighted}
+                            >
                                 <button 
                                 type="button"
                                 onClick={() => handleCheckQuestionAsAnswered(question.id)}
