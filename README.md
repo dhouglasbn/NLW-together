@@ -25,8 +25,9 @@ Let me Ask
 
 This app features all the latest tools and practices in mobile development!
 
-- ⚛️ **React Js** — A JavaScript library for building user interfaces
-
+- **React Js** — A JavaScript library for building user interfaces
+- **Firebase** — A Google tool for use a realtime database
+- **TypeScript** — An improved JavaScript for typing data
 
 ## License
 
