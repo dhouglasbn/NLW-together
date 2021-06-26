@@ -62,6 +62,7 @@
                 box-shadow: 0 2px 12px rgba(0,0,0, 0.84);
                 resize: vertical;
                 min-height: 130px;
+                outline: #835afd;
             }
 
             .form-footer {
@@ -106,7 +107,23 @@
         }
 
         .question-list {
+            display: flex;
             margin-top: 32px;
+            align-items: center;
+            flex-direction: column;
+
+            h2 {
+                font-family: Poppins, sans-serif;
+                font-weight: 600;
+                font-size: 18pt;
+            }
+
+            p {
+                font-family: Roboto, sans-serif;
+                font-weight: 500;
+                font-size: 14pt;
+                color: #737380;
+            }
         }
     }
 }
