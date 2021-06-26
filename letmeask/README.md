@@ -8,9 +8,6 @@
 - [x] #legacy
 - [x] #juntosnopróximonivel
 
-# Contextos
-## ---> são a forma mais simples de compartilhar informações entre componentes de um projeto
-
 # Regras de negócio:
 ```
 {
