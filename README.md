@@ -1,6 +1,3 @@
-# NLW-together
-project builded during Next Level Week Together classes, in mission: REACT
-
 <h1 align="center">
 <br>
   <img src="https://svgshare.com/i/YZC.svg" alt="LetMeAsk">
@@ -17,12 +14,18 @@ Let me Ask
   </a>
 </p>
 
-<div>
-  <img src="" alt="" >
-  <img src="" alt="" >
+<div align="center">
+  <img src="https://i.ibb.co/Y83ycDW/Home.png" alt="Tela da home da página" >
+  <img src="https://i.ibb.co/pLtMQ9d/Room.png" alt="Tela de uma sala do let me ask" >
 </div>
 
 <hr />
+
+## Features
+
+This app features all the latest tools and practices in mobile development!
+
+- ⚛️ **React Js** — A JavaScript library for building user interfaces
 
 
 ## License
