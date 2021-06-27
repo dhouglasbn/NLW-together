@@ -36,7 +36,7 @@ This app features all the latest tools and practices in mobile development!
 2. Move yourself to the appropriate directory: `cd tindev`<br />
 3. Run `yarn` to install dependencies<br />
 
-### Getting started with the Firebase
+### Getting started with Firebase
 
 1. Create your own [firebase project](console.firebase.google.com) unmarking google analytics option.
 2. go into project configurations
