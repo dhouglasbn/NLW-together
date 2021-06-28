@@ -8,9 +8,11 @@ type RoomCodeProps = {
 
 export function RoomCode(props: RoomCodeProps) {
     function copyRoomCodeToClipboard() {
+        // função para salvar no ctrl+c do user o código da sala
         navigator.clipboard.writeText(props.code)
     }
     
+    // botão com código da sala, quando o user clica, o código é copiado 
     return (
         <button className="room-code" onClick={copyRoomCodeToClipboard}>
             <div>
