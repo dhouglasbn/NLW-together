@@ -19,7 +19,8 @@ type AuthContextProviderProps = {
     children: ReactNode;
 }
 
-export const AuthContext = createContext({} as AuthContextType) // contextos precisam de um valor seja qual momento ele estiver
+// dando um createContext para começar o contexto com valor vazio e passando tipagem
+export const AuthContext = createContext({} as AuthContextType) 
 
 export function AuthContextProvider (props: AuthContextProviderProps) {
 
@@ -57,6 +58,7 @@ export function AuthContextProvider (props: AuthContextProviderProps) {
   }, [])
 
   async function signInWithGoogle() {
+    // o app necessita da autenticação google ativada no projeto firebase
     // pegando o provedor
     const provider = new firebase.auth.GoogleAuthProvider();
 
