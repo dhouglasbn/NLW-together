@@ -32,8 +32,8 @@ This app features all the latest tools and practices in mobile development!
 
 ## Getting started
 
-1. Clone this repo using `git clone git@github.com:CarlosLevir/tindev.git`
-2. Move yourself to the appropriate directory: `cd tindev`<br />
+1. Clone this repo using `git clone https://github.com/dhouglasbn/NLW-together.git`
+2. Move yourself to the appropriate directory: `cd letmeask`<br />
 3. Run `yarn` to install dependencies<br />
 
 ### Getting started with Firebase
