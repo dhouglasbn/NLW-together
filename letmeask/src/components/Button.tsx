@@ -8,7 +8,8 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
     isOutlined?: boolean;
 }
 
-// usando o rest operator
+// usando o rest operator para pegar qualquer prop que o componente button necessita
+// parametro outlined para botão branco de borda roxa, ou botão roxo sem borda
 
 export function Button({ isOutlined = false , ...props }: ButtonProps) {
     return (
