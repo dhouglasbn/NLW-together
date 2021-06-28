@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { database } from "../services/firebase";
 import { useAuth } from "./useAuth";
 
+// essa hook vai servir basicamente para pegar as questões da sala
+
 type FirebaseQuestions = Record<string, {
     author: {
         name: string;
@@ -36,20 +38,22 @@ export function useRoom(roomId: string) {
     const [title, setTitle] = useState("");
 
     useEffect(() => {
+        // a referencia da sala que é chamada a hook
         const roomRef = database.ref(`rooms/${roomId}`);
 
 
-        // fazendo um once(listener de uma vez só), usando o listener value, room vai ser a snapshot do banco retornada aqui
-        // para pegar o valor dessa snapshot, só usar parameter.val()
+        // fazendo um on, sou eu quem to dando o nome value para essa listener, room vai ser a snapshot do banco retornada aqui
+        // para pegar os dados dessa snapshot, só usar parameter.val()
         roomRef.on("value", room => {
             // pegando o valor da dataSnapShot
             const databaseRoom = room.val();
-            // aatribuindo a fbq as questions de dbr  ou passasndo um objeto vazio caso não haja questões
+            // atribuindo a fbq as questions de dbr  ou passasndo um objeto vazio caso não haja questões
             const firebaseQuestions: FirebaseQuestions = databaseRoom.questions ?? {};
 
             // Object.entries gera um array com arrays de keys e values em sequencia
             // ([key, value]) é a desestruturação de uma array
-            // some é um find que retorna true ou false
+            // organizando os dados em parsedQuestions: id, content, author, isHighlighted, isAnswered, likeCOunt, likeId
+            // organizando os dados por ordem decrescente de like
             const parsedQuestions = Object.entries(firebaseQuestions).map(([key, value]) => {
                 return {
                     id: key,
@@ -70,6 +74,7 @@ export function useRoom(roomId: string) {
                 return 0;
             })
 
+            // setando titulo e questões
             setTitle(databaseRoom.title)
             setQuestions(parsedQuestions);
 
@@ -80,5 +85,6 @@ export function useRoom(roomId: string) {
         })
     }, [roomId, user?.id])
 
+    // daqui vai sair título e questões
     return { questions, title }
 }

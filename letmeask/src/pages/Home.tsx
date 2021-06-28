@@ -13,9 +13,12 @@ import { database } from "../services/firebase";
 
 // toda função que começa como use é um hook, e todo hook precisa estar dentro de um componente
 export function Home() {
+    // código para compartilhar
     const[roomCode, setRoomCode] = useState("")
 
     const history = useHistory();
+
+    // pegando id, name e avatar
     const { user, signInWithGoogle } = useAuth();
 
     async function handleCreateRoom() {
@@ -28,6 +31,7 @@ export function Home() {
     }
 
     async function handleJoinRoom(event: FormEvent) {
+        // não dar f5 quando a form for submitada
         event.preventDefault();
 
         // faz nada se o campo estiver vazio
@@ -44,12 +48,13 @@ export function Home() {
             return;
         }
 
+        // se a sala estiver setada como finalizada retorna erro
         if(roomRef.val().endedAt) {
             alert("Room already closed.");
             return;
         }
 
-        // se existir, ele é redirecionado para sala
+        // se existir e estiver aberto, ele é redirecionado para sala
         history.push(`/rooms/${roomCode}`)
     }
 
