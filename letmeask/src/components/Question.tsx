@@ -23,6 +23,8 @@ export function Question( {
 } : QuestionProps) {
     return (
         <div 
+        // fica highlighted se ainda não for respondida ou estiver highlighted
+        // fica answered se for respondida
         className={classNames(
             "question",
             { answered : isAnswered },
@@ -32,10 +34,12 @@ export function Question( {
             <p>{content}</p>
             <footer>
             <div className="user-info">
+                {/* aqui vai ser mostrado o avatar da google e o nome do user google */}
                 <img src={author.avatar} alt={author.name} />
                 <span>{author.name}</span>
             </div>
             <div>
+                {/* para o user aqui vai ter o like-button, para o admin aqui vai ter highlight, answer, delete */}
                 {children}
             </div>
             </footer>
