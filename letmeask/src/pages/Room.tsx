@@ -20,23 +20,35 @@ type RoomParams = {
 }
 
 export function Room() {
+    // pegando a id, name e avatar
     const { user } = useAuth();
+    // pegando a id que esta nas params da página
     const params = useParams<RoomParams>();
+
+    // state de question que o user vai poder requisitar
     const [newQuestion, setNewQuestion] = useState("");
+
+    // atribuindo a id das params
     const roomId = params.id;
 
+    // pegando titulo e questões passando a id dessa room
     const { title, questions } = useRoom(roomId);
 
+    // enviar pergunta
     async function handleSendQuestion(event: FormEvent) {
+        // não dar f5 quando a form for submitada
         event.preventDefault()
+        // se não há nada na questão, nem envia ela
         if(newQuestion.trim() === "") {
             return;
         }
 
+        // se o user não estiver logado, retorna erro
         if(!user) {
             throw new Error("You must be logged in")
         }
 
+        // atribuindo a question a content, o autor com nome e avatar, o highlighted e o answered como false
         const question = {
             content: newQuestion,
             author: {
@@ -47,14 +59,19 @@ export function Room() {
             isAnswered: false
         };
 
+        // adicionadno a pergunta nas questions dessa sala
         await database.ref(`rooms/${roomId}/questions`).push(question);
 
+        // apagando a state newQuestion
         setNewQuestion("")
     }
 
+    // dar like na pergunta
     async function handleLikeQuestion(questionId: string, likeId: string | undefined) {
+        // remover se o user já deu like anteriormente
         if (likeId) {
             await database.ref(`rooms/${roomId}/questions/${questionId}/likes/${likeId}`).remove()
+        // adicionar like caso contrário
         } else {
             await database.ref(`rooms/${roomId}/questions/${questionId}/likes`).push({
                 authorId: user?.id,

@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { memo, ReactNode } from "react";
 
 import "../styles/question.scss";
 import classNames from "classnames";
@@ -14,7 +14,7 @@ type QuestionProps = {
     isHighlighted?: boolean;
 }
 
-export function Question( {
+function QuestionComponent( {
     content,
     author,
     isAnswered = false,
@@ -46,3 +46,5 @@ export function Question( {
         </div>
     )
 }
+
+export const Question = memo(QuestionComponent);

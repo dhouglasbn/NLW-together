@@ -12,27 +12,33 @@ import "../styles/auth.scss";
 import { useAuth } from "../hooks/useAuth";
 
 export function NewRoom() {
+    // título da sala
     const [newRoom, setNewRoom] = useState("")
 
     const history = useHistory()
+
+    // atribuindo a user as info de id, name e avatar
     const { user } = useAuth()
 
     async function handleCreateRoom(event: FormEvent) {
         // cancelar o recarregamento de pagina padrão do form react
         event.preventDefault();
 
-        // se newRoom está sem espaços à direita ou à esquerda
+        // se não há nada em new room, não faz nada
         if(newRoom.trim() === "") {
             return;
         }
 
+        // em rooms
         const roomRef = database.ref("rooms");
 
+        // adicionando em rooms a room com seu titulo e a id do admin
         const firebaseRoom = await roomRef.push({
             title: newRoom,
             authorId: user?.id
         })
 
+        // levando o user para dentro da página da sala
         history.push(`/admin/rooms/${firebaseRoom.key}`)
     }
 

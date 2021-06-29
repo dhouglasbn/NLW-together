@@ -20,35 +20,48 @@ type RoomParams = {
 }
 
 export function AdminRoom() {
+    // pegando a id da sala que ta na params da página
     const params = useParams<RoomParams>();
+    // atribuindo essa id a roomId
     const roomId = params.id;
     const history = useHistory()
 
+    // pegando o título e as questões com a hook useRoom passando a id dessa sala
     const { title, questions } = useRoom(roomId);
 
     async function handleEndRoom() {
+        // encerrando a sala
         await database.ref(`rooms/${roomId}`).update({
             endedAt: new Date()
         })
 
+        // mandando o user para a home
         history.push("/");
     }
 
     async function handleDeleteQuestion(questionId: string) {
+        // pedindo confirmação do usuário, isso retorna true ou false
         if (window.confirm("Tem certeza que você deseja excluir esta pergunta?")) {
+            // deletando questão
             await database.ref(`rooms/${roomId}/questions/${questionId}`).remove()
         }
     }
 
+    // marcar questão como respondida
     async function handleCheckQuestionAsAnswered(questionId: string) {
+        // setando isAnswered como true
+        // dps o css vai alterar o estilo da questão
         await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
-            isHighlighted: true
+            isAnswered: true
         })
     }
 
+    // destacando a questão
     async function handleHighlightQuestion(questionId: string) {
+        // setando isHighlighted como true
+        // dps o css vai alterar o estilo da questão
         await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
-            isAnswered: true
+            isHighlighted: true
         })
     }
 
@@ -100,22 +113,26 @@ export function AdminRoom() {
                                 {/* usando aqui uma fragment, pro react serve como uma parent, mas não vai para o html */}
                                 {!question.isAnswered && (
                                     <>
+                                        {/* marcar questão como respondida */}
                                         <button 
                                             className="answer-button"
                                             type="button"
                                             onClick={() => handleCheckQuestionAsAnswered(question.id)}
                                         >
-                                            <img src={checkImg} alt="Marcar pergunta como respondida" />
+                                            <img src={answerImg} alt="Marcar pergunta como respondida" />
                                         </button>
+                                        {/* marcar questão como highlighted */}
                                         <button 
                                             className="highlight-button"
                                             type="button"
                                             onClick={() => handleHighlightQuestion(question.id)}
                                         >
-                                            <img src={answerImg} alt="Dar destaque à pergunta" />
+                                            <img src={checkImg} alt="Dar destaque à pergunta" />
                                         </button>
                                     </>
                                 )}  
+
+                                {/* deletar questão */}
                                 <button 
                                 className="delete-button"
                                 type="button"
