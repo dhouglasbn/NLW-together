@@ -1,4 +1,7 @@
 import { useHistory } from "react-router-dom";
+import Switch from "react-switch";
+
+import { shade } from "polished";
 
 import illustrationImg from "../assets/images/illustration.svg";
 import logoImg from "../assets/images/logo.svg";
@@ -8,18 +11,22 @@ import { Button } from "../components/Button";
 
 import "../styles/auth.scss";
 import { useAuth } from "../hooks/useAuth";
-import { FormEvent, useState } from "react";
+import { FormEvent, useContext, useState } from "react";
 import { database } from "../services/firebase";
+import { ThemeContext } from "styled-components";
 
 // toda função que começa como use é um hook, e todo hook precisa estar dentro de um componente
 export function Home() {
+    // as cores da ThemeContext
+    const { colors, title } = useContext(ThemeContext)
+
     // código para compartilhar
     const[roomCode, setRoomCode] = useState("")
 
     const history = useHistory();
 
     // pegando id, name e avatar
-    const { user, signInWithGoogle } = useAuth();
+    const { user, signInWithGoogle, toggleTheme } = useAuth();
 
     async function handleCreateRoom() {
         // se user não estiver autenticado, logar com google
@@ -62,6 +69,18 @@ export function Home() {
     return (
         <div id="page-auth">
             <aside>
+                <Switch
+                className="switch-theme"
+                onChange={toggleTheme}
+                checked={title === "dark"}
+                checkedIcon={false}
+                uncheckedIcon={false}
+                height={10}
+                width={40}
+                handleDiameter={20}
+                onColor={shade(0.15, colors.primary)}
+                offColor={colors.secundary}
+                />
                 <img src={illustrationImg} alt="ilustração simbolizando perguntas e respostas" />
                 <strong>Crie salas de Q&amp;A ao vivo</strong>
                 <p>Tire as dúvidas da sua audiência em tempo-real</p>

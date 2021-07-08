@@ -1,14 +1,17 @@
+// importar o módulo antes para não sobrescrever-lo totalmente
+import "styled-components";
+
 declare module "styled-components" {
-    export interface DefaulTheme {
-        title: string,
+    export interface DefaultTheme {
+        title: string;
 
-    colors: {
-        primary: string,
-        secondary: string,
+        colors: {
+            primary: string;
+            secundary: string;
 
-        background: string,
-        text: string
-    }
-    }
+            background: string;
+            text: string;
+        };
+    };
 
-}
+};

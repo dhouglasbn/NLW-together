@@ -1,5 +1,10 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
+import { ThemeProvider } from "styled-components";
 import { auth, firebase } from "../services/firebase"
+
+
+import light from "../styles/themes/light";
+import dark from "../styles/themes/dark";
 
 // toda state ela tem o tipo futuro e o atual
 // signIn ta definido como uma função que retornara uma Promise por ser async, e essa Promise é uma void
@@ -7,6 +12,7 @@ import { auth, firebase } from "../services/firebase"
 type AuthContextType = {
     user: User | undefined;
     signInWithGoogle: () => Promise<void>;
+    toggleTheme: () => void;
 }
   
 type User = {
@@ -23,6 +29,13 @@ type AuthContextProviderProps = {
 export const AuthContext = createContext({} as AuthContextType) 
 
 export function AuthContextProvider (props: AuthContextProviderProps) {
+
+  const [theme, setTheme] = useState(light)
+
+  function toggleTheme() {
+    setTheme(theme.title === "light" ? dark : light)
+  }
+
 
 
   const [user, setUser] = useState<User>()
@@ -88,8 +101,10 @@ export function AuthContextProvider (props: AuthContextProviderProps) {
   }
 
     return (
-        <AuthContext.Provider value={{user, signInWithGoogle}}>
-            {props.children}
+        <AuthContext.Provider value={{user, signInWithGoogle, toggleTheme}}>
+            <ThemeProvider theme={theme}>
+              {props.children}
+            </ThemeProvider>
         </AuthContext.Provider>
     )
 }
