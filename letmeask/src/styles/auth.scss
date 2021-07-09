@@ -8,28 +8,37 @@
 
         background: #835afd;
         color: #fff;
-
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: space-around;
 
-        padding: 120px 80px;
+        div.switch-theme {
+            margin-left: 20px;
+        }        
 
-        img {
-            max-width: 320px;
-        }
+        div#aside-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+    
+            padding: 120px 80px;
 
-        strong {
-            font: 700 36px "Poppins", sans-serif;
-            line-height: 42px;
-            margin-top: 16px;
-        }
-
-        p {
-            font-size: 24px;;
-            line-height: 32px;
-            margin-top: 16px;
-            color: #f8f8f8;
+            img {
+                max-width: 320px;
+            }
+    
+            strong {
+                font: 700 36px "Poppins", sans-serif;
+                line-height: 42px;
+                margin-top: 16px;
+            }
+    
+            p {
+                font-size: 24px;;
+                line-height: 32px;
+                margin-top: 16px;
+                color: #f8f8f8;
+            }
         }
     }
 

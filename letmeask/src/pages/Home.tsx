@@ -81,9 +81,11 @@ export function Home() {
                 onColor={shade(0.15, colors.primary)}
                 offColor={colors.secundary}
                 />
-                <img src={illustrationImg} alt="ilustração simbolizando perguntas e respostas" />
-                <strong>Crie salas de Q&amp;A ao vivo</strong>
-                <p>Tire as dúvidas da sua audiência em tempo-real</p>
+                <div id="aside-content">
+                    <img src={illustrationImg} alt="ilustração simbolizando perguntas e respostas" />
+                    <strong>Crie salas de Q&amp;A ao vivo</strong>
+                    <p>Tire as dúvidas da sua audiência em tempo-real</p>
+                </div>
             </aside>
 
             <main>

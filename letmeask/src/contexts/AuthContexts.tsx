@@ -5,8 +5,8 @@ import { auth, firebase } from "../services/firebase"
 import { DefaultTheme } from "styled-components";
 
 
-import light from "../styles/themes/light";
-import dark from "../styles/themes/dark";
+import { light } from "../styles/themes/light";
+import { dark } from "../styles/themes/dark";
 
 // toda state ela tem o tipo futuro e o atual
 // signIn ta definido como uma função que retornara uma Promise por ser async, e essa Promise é uma void
