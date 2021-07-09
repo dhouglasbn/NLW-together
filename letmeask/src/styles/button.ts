@@ -1,4 +1,11 @@
-.button {
+import styled from "styled-components";
+
+// .button {
+
+    
+// }
+
+export const ButtonStyle = styled.button`
     height: 58px;
     border-radius: 8px;
     font-weight: 500;
@@ -14,7 +21,7 @@
     border: 0;
 
     transition: filter 0.2s;
-
+    
     img {
         margin-right: 8px;
     }
@@ -33,4 +40,4 @@
         opacity: 0.6;
         cursor: not-allowed;
     }
-}
+`

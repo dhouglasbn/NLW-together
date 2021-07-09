@@ -9,11 +9,11 @@ import googleIconImg from "../assets/images/google-icon.svg";
 
 import { Button } from "../components/Button";
 
-import "../styles/auth.scss";
 import { useAuth } from "../hooks/useAuth";
 import { FormEvent, useContext, useState } from "react";
 import { database } from "../services/firebase";
 import { ThemeContext } from "styled-components";
+import { PageAuth } from "../styles/auth";
 
 // toda função que começa como use é um hook, e todo hook precisa estar dentro de um componente
 export function Home() {
@@ -67,7 +67,7 @@ export function Home() {
 
 
     return (
-        <div id="page-auth">
+        <PageAuth>
             <aside>
                 <Switch
                 className="switch-theme"
@@ -109,6 +109,6 @@ export function Home() {
                 </div>
             </main>
 
-        </div>
+        </PageAuth>
     )
 }
