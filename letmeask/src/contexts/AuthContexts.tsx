@@ -2,6 +2,8 @@ import { createContext, ReactNode, useEffect, useState } from "react";
 import { ThemeProvider } from "styled-components";
 import { auth, firebase } from "../services/firebase"
 
+import { DefaultTheme } from "styled-components";
+
 
 import light from "../styles/themes/light";
 import dark from "../styles/themes/dark";
@@ -30,7 +32,7 @@ export const AuthContext = createContext({} as AuthContextType)
 
 export function AuthContextProvider (props: AuthContextProviderProps) {
 
-  const [theme, setTheme] = useState(light)
+  const [theme, setTheme] = useState<DefaultTheme>(light)
 
   function toggleTheme() {
     setTheme(theme.title === "light" ? dark : light)
