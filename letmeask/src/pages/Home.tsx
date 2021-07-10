@@ -18,7 +18,7 @@ import { PageAuth } from "../styles/auth";
 // toda função que começa como use é um hook, e todo hook precisa estar dentro de um componente
 export function Home() {
     // as cores da ThemeContext
-    const { colors, title } = useContext(ThemeContext)
+    const { colors, title } = useContext(ThemeContext) 
 
     // código para compartilhar
     const[roomCode, setRoomCode] = useState("")
@@ -105,7 +105,7 @@ export function Home() {
                         <Button type="submit">
                             Entrar na sala
                         </Button>
-                    </form>
+                    </form> 
                 </div>
             </main>
 

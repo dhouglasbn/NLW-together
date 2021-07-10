@@ -1,7 +1,8 @@
 import { memo, ReactNode } from "react";
 
-import "../styles/question.scss";
+import "../styles/question.ts";
 import classNames from "classnames";
+import { QuestionStyle } from "../styles/question";
 
 type QuestionProps = {
     content: string;
@@ -22,7 +23,7 @@ function QuestionComponent( {
     children
 } : QuestionProps) {
     return (
-        <div 
+        <QuestionStyle 
         // fica highlighted se ainda não for respondida ou estiver highlighted
         // fica answered se for respondida
         className={classNames(
@@ -43,7 +44,7 @@ function QuestionComponent( {
                 {children}
             </div>
             </footer>
-        </div>
+        </QuestionStyle>
     )
 }
 

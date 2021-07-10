@@ -11,6 +11,16 @@ declare module "styled-components" {
         colors: {
             primary: string;
             secundary: string;
+            tertiary: string;
+
+            separator: string;
+            pushHomeText: string;
+            googleButton: string;
+
+            questionBackground: string;
+            highlightBackground: string;
+            answeredBackground: string;
+            authorName: string;
 
             background: string;
             text: string;

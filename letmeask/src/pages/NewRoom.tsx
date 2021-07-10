@@ -1,24 +1,29 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useContext, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+import Switch from "react-switch";
 
 import illustrationImg from "../assets/images/illustration.svg";
 import logoImg from "../assets/images/logo.svg";
 
 import { Button } from "../components/Button";
 import { database } from "../services/firebase";
+import { shade } from "polished";
 
-import "../styles/auth.ts";
+import { PageAuth } from "../styles/auth";
 
 import { useAuth } from "../hooks/useAuth";
+import { ThemeContext } from "styled-components";
 
 export function NewRoom() {
+    const { colors, title } = useContext(ThemeContext);
+
     // título da sala
     const [newRoom, setNewRoom] = useState("")
 
     const history = useHistory()
 
     // atribuindo a user as info de id, name e avatar
-    const { user } = useAuth()
+    const { user, toggleTheme } = useAuth()
 
     async function handleCreateRoom(event: FormEvent) {
         // cancelar o recarregamento de pagina padrão do form react
@@ -44,11 +49,25 @@ export function NewRoom() {
 
 
     return (
-        <div id="page-auth">
+        <PageAuth>
             <aside>
-                <img src={illustrationImg} alt="ilustração simbolizando perguntas e respostas" />
-                <strong>Crie salas de Q&amp;A ao vivo</strong>
-                <p>Tire as dúvidas da sua audiência em tempo-real</p>
+                <Switch
+                className="switch-theme"
+                onChange={toggleTheme}
+                checked={title === "dark"}
+                checkedIcon={false}
+                uncheckedIcon={false}
+                height={10}
+                width={40}
+                handleDiameter={20}
+                onColor={shade(0.15, colors.primary)}
+                offColor={colors.secundary}
+                />
+                <div id="aside-content">
+                    <img src={illustrationImg} alt="ilustração simbolizando perguntas e respostas" />
+                    <strong>Crie salas de Q&amp;A ao vivo</strong>
+                    <p>Tire as dúvidas da sua audiência em tempo-real</p>
+                </div>
             </aside>
 
             <main>
@@ -71,6 +90,6 @@ export function NewRoom() {
                 </div>
             </main>
 
-        </div>
+        </PageAuth>
     )
 }
