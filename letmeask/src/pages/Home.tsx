@@ -18,7 +18,7 @@ import { PageAuth } from "../styles/auth";
 // toda função que começa como use é um hook, e todo hook precisa estar dentro de um componente
 export function Home() {
     // as cores da ThemeContext
-    const { colors, title } = useContext(ThemeContext) 
+    const { colors, themeTitle } = useContext(ThemeContext) 
 
     // código para compartilhar
     const[roomCode, setRoomCode] = useState("")
@@ -72,7 +72,7 @@ export function Home() {
                 <Switch
                 className="switch-theme"
                 onChange={toggleTheme}
-                checked={title === "dark"}
+                checked={themeTitle === "dark"}
                 checkedIcon={false}
                 uncheckedIcon={false}
                 height={10}

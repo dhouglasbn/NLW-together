@@ -1,5 +1,5 @@
 export const dark =  {
-    title: "dark",
+    themeTitle: "dark",
 
     colors: {
         primary: "#835afd",
@@ -14,6 +14,7 @@ export const dark =  {
         highlightBackground: "#f4f0ff",
         answeredBackground: "#DBDCDD",
         authorName: "#737380",
+        roomHeaderBorder: "#e2e2e2",
 
         background: "#f8f8f8",
         text: "#29292e"

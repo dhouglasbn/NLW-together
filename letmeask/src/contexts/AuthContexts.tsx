@@ -35,7 +35,7 @@ export function AuthContextProvider (props: AuthContextProviderProps) {
   const [theme, setTheme] = useState<DefaultTheme>(light)
 
   function toggleTheme() {
-    setTheme(theme.title === "light" ? dark : light)
+    setTheme(theme.themeTitle === "light" ? dark : light)
   }
 
 

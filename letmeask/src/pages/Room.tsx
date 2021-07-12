@@ -1,5 +1,8 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useContext, useState } from "react";
 import { useParams } from "react-router-dom";
+import { ThemeContext } from "styled-components";
+import { shade } from "polished";
+import Switch from "react-switch";
 
 import logoImg from "../assets/images/logo.svg";
 
@@ -10,7 +13,7 @@ import { useAuth } from "../hooks/useAuth";
 import { useRoom } from "../hooks/useRoom";
 import { database } from "../services/firebase";
 
-import "../styles/room.scss"
+import { PageRoom } from "../styles/room"
 
 
 
@@ -20,8 +23,11 @@ type RoomParams = {
 }
 
 export function Room() {
+
+    const { colors, themeTitle } = useContext(ThemeContext);
+
     // pegando a id, name e avatar
-    const { user } = useAuth();
+    const { user, toggleTheme } = useAuth();
     // pegando a id que esta nas params da página
     const params = useParams<RoomParams>();
 
@@ -80,10 +86,24 @@ export function Room() {
     }
 
     return (
-        <div id="page-room">
+        <PageRoom>
             <header>
                 <div className="content">
-                    <img src={logoImg} alt="Letmeask" />
+                    <div>
+                        <img src={logoImg} alt="Letmeask" />
+                        <Switch
+                        className="switch-theme"
+                        onChange={toggleTheme}
+                        checked={themeTitle === "dark"}
+                        checkedIcon={false}
+                        uncheckedIcon={false}
+                        height={10}
+                        width={40}
+                        handleDiameter={20}
+                        onColor={shade(0.15, colors.primary)}
+                        offColor={colors.secundary}
+                        />
+                    </div>
                     <RoomCode code={roomId} />
                 </div>
             </header>
@@ -161,6 +181,6 @@ export function Room() {
                     })}
                 </div>
             </main>
-        </div>
+        </PageRoom>
     )
 }

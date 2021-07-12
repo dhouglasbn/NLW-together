@@ -1,18 +1,24 @@
 import { useHistory, useParams } from "react-router-dom";
 
+import Switch from "react-switch";
+import { shade } from "polished";
+
 import logoImg from "../assets/images/logo.svg";
 import { Button } from "../components/Button";
 import { Question } from "../components/Question";
 import { RoomCode } from "../components/RoomCode";
 import { useRoom } from "../hooks/useRoom";
 
-import "../styles/room.scss";
+import { PageRoom } from "../styles/room";
 
 import deleteImg from "../assets/images/delete.svg";
 import checkImg from "../assets/images/check.svg";
 import answerImg from "../assets/images/answer.svg";
 
 import { database } from "../services/firebase";
+import { useAuth } from "../hooks/useAuth";
+import { useContext } from "react";
+import { ThemeContext } from "styled-components";
 
 
 type RoomParams = {
@@ -20,11 +26,16 @@ type RoomParams = {
 }
 
 export function AdminRoom() {
+
+    const { colors, themeTitle } = useContext(ThemeContext)
+
     // pegando a id da sala que ta na params da página
     const params = useParams<RoomParams>();
     // atribuindo essa id a roomId
     const roomId = params.id;
     const history = useHistory()
+
+    const { toggleTheme } = useAuth();
 
     // pegando o título e as questões com a hook useRoom passando a id dessa sala
     const { title, questions } = useRoom(roomId);
@@ -66,10 +77,24 @@ export function AdminRoom() {
     }
 
     return (
-        <div id="page-room">
+        <PageRoom>
             <header>
                 <div className="content">
-                    <img src={logoImg} alt="Letmeask" />
+                    <div>
+                        <img src={logoImg} alt="Letmeask" />
+                        <Switch
+                        className="switch-theme"
+                        onChange={toggleTheme}
+                        checked={themeTitle === "dark"}
+                        checkedIcon={false}
+                        uncheckedIcon={false}
+                        height={10}
+                        width={40}
+                        handleDiameter={20}
+                        onColor={shade(0.15, colors.primary)}
+                        offColor={colors.secundary}
+                        />
+                    </div>
                     <div>
                         <RoomCode code={roomId} />
                         <Button isOutlined onClick={handleEndRoom}>Encerrar sala</Button>
@@ -145,6 +170,6 @@ export function AdminRoom() {
                     })}
                 </div>
             </main>
-        </div>
+        </PageRoom>
     )
 }

@@ -1,5 +1,5 @@
 export const light = {
-    title: "light",
+    themeTitle: "light",
 
     colors: {
         primary: "#835afd",
@@ -14,6 +14,7 @@ export const light = {
         highlightBackground: "#f4f0ff",
         answeredBackground: "#DBDCDD",
         authorName: "#737380",
+        roomHeaderBorder: "#e2e2e2",
 
         background: "#ffffff",
         text: "#29292e"

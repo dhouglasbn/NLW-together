@@ -6,7 +6,7 @@ import "styled-components";
 
 declare module "styled-components" {
     export interface DefaultTheme {
-        title: string;
+        themeTitle: string;
 
         colors: {
             primary: string;
@@ -21,6 +21,7 @@ declare module "styled-components" {
             highlightBackground: string;
             answeredBackground: string;
             authorName: string;
+            roomHeaderBorder: string;
 
             background: string;
             text: string;

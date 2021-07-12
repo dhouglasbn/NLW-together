@@ -15,7 +15,7 @@ import { useAuth } from "../hooks/useAuth";
 import { ThemeContext } from "styled-components";
 
 export function NewRoom() {
-    const { colors, title } = useContext(ThemeContext);
+    const { colors, themeTitle } = useContext(ThemeContext);
 
     // título da sala
     const [newRoom, setNewRoom] = useState("")
@@ -54,7 +54,7 @@ export function NewRoom() {
                 <Switch
                 className="switch-theme"
                 onChange={toggleTheme}
-                checked={title === "dark"}
+                checked={themeTitle === "dark"}
                 checkedIcon={false}
                 uncheckedIcon={false}
                 height={10}
