@@ -52,6 +52,8 @@ export const PageAuth = styled.div`
         display: flex;
         align-items: center;
         justify-content: center;
+
+        background: ${props => props.theme.colors.background};
     }
 
     .main-content {
@@ -106,7 +108,7 @@ export const PageAuth = styled.div`
             border-radius: 8px;
             font-weight: 500;
             background: ${props => props.theme.colors.googleButton};
-            color: ${props => props.theme.colors.background};
+            color: #fff;
 
             display: flex;
             justify-content: center;

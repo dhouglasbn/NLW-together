@@ -12,12 +12,13 @@ export const PageRoom = styled.div`
             justify-content: space-between;
             align-items: center;
 
-            > img {
+            > div img {
                 max-height: 45px;
             }
 
             > div {
                 display: flex;
+                align-items: center;
                 gap: 16px;
 
                 button {
