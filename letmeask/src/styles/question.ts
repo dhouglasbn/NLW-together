@@ -48,7 +48,7 @@ export const QuestionStyle = styled.div`
 
             span {
                 margin-left: 8px;
-                color: #737380;
+                color: ${props => props.theme.colors.authorName};
                 font-size: 14px;
             }
         }

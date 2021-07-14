@@ -62,10 +62,10 @@ export const PageRoom = styled.div`
                 padding: 16px;
                 border-radius: 8px;
                 background: ${props => props.theme.colors.questionBackground};
-                box-shadow: 0 2px 12px rgba(0,0,0, 0.84);
                 resize: vertical;
                 min-height: 130px;
                 outline: ${props => props.theme.colors.primary};
+                color: ${props => props.theme.colors.text};
             }
 
             .form-footer {

@@ -39,7 +39,7 @@ export const PageAuth = styled.div`
                 font-size: 24px;;
                 line-height: 32px;
                 margin-top: 16px;
-                color: ${props => props.theme.colors.tertiary};
+                color: #fff;
             }
         }
     }
@@ -69,6 +69,7 @@ export const PageAuth = styled.div`
         }
 
         h2 {
+            color: ${props => props.theme.colors.text};
             font-size: 24px;
             margin: 64px 0 24px;
             font-family: "Poppins", sans-serif;
@@ -81,6 +82,7 @@ export const PageAuth = styled.div`
                 padding: 0 16px;
                 background: ${props => props.theme.colors.background};
                 border: 1px solid ${props => props.theme.colors.separator};
+                color: ${props =>  props.theme.colors.text}
             }
 
             button {

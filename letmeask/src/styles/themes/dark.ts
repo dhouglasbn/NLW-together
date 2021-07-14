@@ -1,22 +1,24 @@
+import { shade } from "polished";
+
 export const dark = {
     themeTitle: "dark",
 
     colors: {
-        primary: "#835afd",
-        secundary: "#e559f9",
-        tertiary: "#f8f8f8",
+        primary: "#5e548e",
+        secundary: "#9f86c0",
+        tertiary: "#be95c4",
 
-        separator: "#a8a8b3",
-        pushHomeText: "#737380",
+        separator: "#e0b1cb",
+        pushHomeText: "#e0b1cb",
         googleButton: "#ea4335",
         
-        questionBackground: "#fefefe",
-        highlightBackground: "#f4f0ff",
-        answeredBackground: "#DBDCDD",
-        authorName: "#737380",
-        roomHeaderBorder: "#e2e2e2",
+        questionBackground: "#221841",
+        highlightBackground: shade(0.025, "#231942"),
+        answeredBackground: shade(0.1, "#231942"),
+        authorName: "#e0b1cb",
+        roomHeaderBorder: "#5e548e",
 
-        background: "#fff",
-        text: "#29292e"
+        background: "#231942",
+        text: "#e0b1cb"
     },
 }
